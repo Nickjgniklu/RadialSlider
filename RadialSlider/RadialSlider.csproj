@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <PackageId>Plugin.RadialSlider</PackageId>
+    <Authors>Nicolas Jugganaikloo</Authors>
+    <Company>Nykloo LLC</Company>
+    <Description>A radial slider for Xamarin Forms using Skia</Description>
+    <PackageProjectUrl></PackageProjectUrl>
+    <Copyright />
+    <RepositoryUrl>https://github.com/Nickjgniklu/RadialSlider</RepositoryUrl>
+    <RepositoryType>Git</RepositoryType>
+    <PackageTags>Xamarin, Android, iOS, Radial Slider, Slider</PackageTags>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="SkiaSharp.Views.Forms" Version="1.68.0" />
+    <PackageReference Include="Xamarin.Forms" Version="4.2.0.709249" />
+  </ItemGroup>
+
+</Project>
