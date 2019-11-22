@@ -1,15 +1,21 @@
 ﻿using System;
-
 using SkiaSharp.Views.Forms;
 using SkiaSharp;
 using Xamarin.Forms;
+using Xamarin.Forms.Internals;
 
+[assembly: Preserve]
+[assembly: XmlnsDefinition("http://nykloo.com/schemas/controls", "Plugin.RadialSlider")]
 namespace Plugin.RadialSlider
 {
     public class RadialSlider : ContentView
     {
-       
-        Color _knobColor;
+        static Color KNOBDEFAULT = Color.FromHex("F3F3F3");
+        static Color ARCCOLORDEFAULT = Color.ForestGreen;
+        static Color ARCBACKGROUNDCOLOR = Color.FromHex("D3D3D3");
+
+
+        Color _knobColor= KNOBDEFAULT;
         public Color KnobColor
         {
             get { return _knobColor; }
@@ -24,7 +30,7 @@ namespace Plugin.RadialSlider
                                                          propertyName: "KnobColorProperty",
                                                          returnType: typeof(Color),
                                                          declaringType: typeof(RadialSlider),
-                                                         defaultValue: Color.FromHex("F3F3F3"),
+                                                         defaultValue: KNOBDEFAULT,
                                                          defaultBindingMode: BindingMode.TwoWay,
                                                          propertyChanged: KnobColorPropertyChanged);
         private static void KnobColorPropertyChanged(BindableObject bindable, object oldValue, object newValue)
@@ -60,7 +66,7 @@ namespace Plugin.RadialSlider
 
 
         //}
-        Color _arcColor;
+        Color _arcColor= ARCCOLORDEFAULT;
         public Color ArcColor
         {
             get { return _arcColor; }
@@ -75,7 +81,7 @@ namespace Plugin.RadialSlider
                                                          propertyName: "ArcColor",
                                                          returnType: typeof(Color),
                                                          declaringType: typeof(RadialSlider),
-                                                         defaultValue: Color.ForestGreen,
+                                                         defaultValue: ARCCOLORDEFAULT,
                                                          defaultBindingMode: BindingMode.TwoWay,
                                                          propertyChanged: ArcColorPropertyChanged);
         private static void ArcColorPropertyChanged(BindableObject bindable, object oldValue, object newValue)
@@ -85,7 +91,7 @@ namespace Plugin.RadialSlider
 
 
         }
-        Color _arcBackgroundColor;
+        Color _arcBackgroundColor= ARCBACKGROUNDCOLOR;
         public Color ArcBackgroundColor
         {
             get { return _arcBackgroundColor; }
@@ -100,7 +106,7 @@ namespace Plugin.RadialSlider
                                                          propertyName: "ArcBackgroundColor",
                                                          returnType: typeof(Color),
                                                          declaringType: typeof(RadialSlider),
-                                                         defaultValue: Color.FromHex("D3D3D3"),
+                                                         defaultValue: ARCBACKGROUNDCOLOR,
                                                          defaultBindingMode: BindingMode.TwoWay,
                                                          propertyChanged: ArcBackgroundColorPropertyChanged);
         private static void ArcBackgroundColorPropertyChanged(BindableObject bindable, object oldValue, object newValue)
