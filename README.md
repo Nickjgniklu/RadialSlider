@@ -2,7 +2,7 @@
 A simple Radial Slider for Xamarin Forms similar to the standard Xamarin Forms slider.  
 
 
-![Demo Image](https://raw.githubusercontent.com/Nickjgniklu/RadialSlider/master/demo.gif?raw=true)
+![Demo Image](https://raw.githubusercontent.com/Nickjgniklu/RadialSlider/master/demo.gif)
 
 `
 <?xml version="1.0" encoding="utf-8" ?>
