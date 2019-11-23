@@ -3,19 +3,29 @@ using SkiaSharp.Views.Forms;
 using SkiaSharp;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
+using System.ComponentModel;
+using System.Windows.Input;
 
-[assembly: Preserve]
-[assembly: XmlnsDefinition("http://nykloo.com/schemas/controls", "Plugin.RadialSlider")]
 namespace Plugin.RadialSlider
 {
+    [Browsable(true)]
+
     public class RadialSlider : ContentView
     {
         static Color KNOBDEFAULT = Color.FromHex("F3F3F3");
         static Color ARCCOLORDEFAULT = Color.ForestGreen;
         static Color ARCBACKGROUNDCOLOR = Color.FromHex("D3D3D3");
 
+        public delegate void ValueChangedHandler(object sender, ValueChangedEventArgs e);
+        public event ValueChangedHandler ValueChanged;
 
-        Color _knobColor= KNOBDEFAULT;
+
+
+
+
+
+
+        Color _knobColor = KNOBDEFAULT;
         public Color KnobColor
         {
             get { return _knobColor; }
@@ -41,31 +51,6 @@ namespace Plugin.RadialSlider
 
         }
 
-        //Color _backgroundColor;
-        //public new Color BackgroundColor
-        //{
-        //    get { return _backgroundColor; }
-        //    set
-        //    {
-        //        _backgroundColor = value;
-        //        canvasView.InvalidateSurface();
-
-        //    }
-        //}
-        //public new static readonly BindableProperty BackgroundColorProperty = BindableProperty.Create(
-        //                                                 propertyName: "BackgroundColor",
-        //                                                 returnType: typeof(Color),
-        //                                                 declaringType: typeof(RadialSlider),
-        //                                                 defaultValue: Color.FromHex("F3F3F3"),
-        //                                                 defaultBindingMode: BindingMode.TwoWay,
-        //                                                 propertyChanged: BackgroundColorPropertyChanged);
-        //private static void BackgroundColorPropertyChanged(BindableObject bindable, object oldValue, object newValue)
-        //{
-        //    var control = (RadialSlider)bindable;
-        //    control.BackgroundColor = (Color)newValue;
-
-
-        //}
         Color _arcColor= ARCCOLORDEFAULT;
         public Color ArcColor
         {
@@ -122,6 +107,7 @@ namespace Plugin.RadialSlider
             get { return _value; }
             set
             {
+                SetValue(ValueProperty, value);
                 _value = value;
                 canvasView.InvalidateSurface();
 
@@ -138,6 +124,9 @@ namespace Plugin.RadialSlider
         {
             var control = (RadialSlider)bindable;
             control.Value = control.Value < control.Max ? (double)newValue : control.Max;
+          control.ValueChanged?.Invoke(control, new ValueChangedEventArgs((double)oldValue, (double)newValue));
+
+
 
 
         }

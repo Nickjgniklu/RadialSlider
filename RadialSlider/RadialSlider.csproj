@@ -7,12 +7,16 @@
     <Company>Nykloo LLC</Company>
     <Description>A radial slider for Xamarin Forms using SkiaSharp</Description>
     <PackageProjectUrl></PackageProjectUrl>
-    <Copyright />
+    <Copyright>https://github.com/Nickjgniklu/RadialSlider/blob/master/LICENSE</Copyright>
     <RepositoryUrl>https://github.com/Nickjgniklu/RadialSlider</RepositoryUrl>
     <RepositoryType>Git</RepositoryType>
     <PackageTags>Xamarin, Android, iOS, Radial Slider, Slider</PackageTags>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.0.6</Version>
+    <Version>1.2.01</Version>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <AssemblyName>Plugin.RadialSlider</AssemblyName>
+    <RootNamespace>Plugin.RadialSlider</RootNamespace>
+    <Product>Plugin.RadialSlider</Product>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -22,6 +26,13 @@
   <ItemGroup>
     <PackageReference Include="SkiaSharp.Views.Forms" Version="1.68.0" />
     <PackageReference Include="Xamarin.Forms" Version="4.0.0.425677" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>
