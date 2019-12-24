@@ -16,15 +16,19 @@ namespace Plugin.RadialSlider
         static Color ARCCOLORDEFAULT = Color.ForestGreen;
         static Color ARCBACKGROUNDCOLOR = Color.FromHex("D3D3D3");
 
-        public delegate void ValueChangedHandler(object sender, ValueChangedEventArgs e);
+       public delegate void ValueChangedHandler(object sender, ValueChangedEventArgs e);
         public event ValueChangedHandler ValueChanged;
 
 
+        public event EventHandler DragStarted;
+        public event EventHandler DragCompleted;
 
 
 
 
 
+
+        #region knob color
         Color _knobColor = KNOBDEFAULT;
         public Color KnobColor
         {
@@ -50,8 +54,9 @@ namespace Plugin.RadialSlider
 
 
         }
-
-        Color _arcColor= ARCCOLORDEFAULT;
+        #endregion
+        #region arc color
+        Color _arcColor = ARCCOLORDEFAULT;
         public Color ArcColor
         {
             get { return _arcColor; }
@@ -76,7 +81,9 @@ namespace Plugin.RadialSlider
 
 
         }
-        Color _arcBackgroundColor= ARCBACKGROUNDCOLOR;
+        #endregion
+        #region arc background color
+        Color _arcBackgroundColor = ARCBACKGROUNDCOLOR;
         public Color ArcBackgroundColor
         {
             get { return _arcBackgroundColor; }
@@ -101,6 +108,8 @@ namespace Plugin.RadialSlider
 
 
         }
+        #endregion
+
         double _value = 127;
         public double Value
         {
@@ -124,7 +133,7 @@ namespace Plugin.RadialSlider
         {
             var control = (RadialSlider)bindable;
             control.Value = control.Value < control.Max ? (double)newValue : control.Max;
-          control.ValueChanged?.Invoke(control, new ValueChangedEventArgs((double)oldValue, (double)newValue));
+            control.ValueChanged?.Invoke(control, new ValueChangedEventArgs((double)oldValue, (double)newValue));
 
 
 
@@ -252,6 +261,14 @@ namespace Plugin.RadialSlider
 
         private void CanvasView_Touch(object sender, SKTouchEventArgs e)
         {
+            if (e.ActionType == SKTouchAction.Entered || e.ActionType == SKTouchAction.Pressed)
+            {
+                DragStarted?.Invoke(this, new EventArgs());
+            }
+            if (e.ActionType == SKTouchAction.Exited||e.ActionType == SKTouchAction.Released)
+            {
+                DragCompleted?.Invoke(this, new EventArgs());
+            }
             var dis = GetDistance(Center.X, e.Location.X, Center.Y, e.Location.Y);
             float adjustedRadius = (MinorAxisLength / 2) - arcPadding;
 
